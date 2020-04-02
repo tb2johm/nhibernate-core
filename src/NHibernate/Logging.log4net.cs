@@ -41,7 +41,16 @@ namespace NHibernate
 		{
 			var typeName = "log4net.LogManager, log4net";
 			// Try to get the type from an already loaded assembly
-			var type = System.Type.GetType(typeName);
+			System.Type type;
+			try
+			{
+				type = System.Type.GetType(typeName);
+			}
+			catch (Exception)
+			{
+				type = null;
+			}
+
 			if (type != null)
 				return type;
 
